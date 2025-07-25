@@ -1,0 +1,5 @@
+extend type Query {
+    events: [Event!]!
+    eventsByVenue(venueReferenceId: String!): [Event!]!
+    venuesWithLatestEvents(limit: Int = 5): [Venue!]!
+}

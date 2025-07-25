@@ -3,6 +3,7 @@ package ru.mts.media.platform.umc.dao.postgres.venue;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import ru.mts.media.platform.umc.domain.gql.types.FullExternalId;
 import ru.mts.media.platform.umc.domain.gql.types.Venue;
 import ru.mts.media.platform.umc.domain.venue.VenueSave;
@@ -16,6 +17,7 @@ class VenuePgDao implements VenueSot {
     private final VenuePgRepository repository;
     private final VenuePgMapper mapper;
 
+    @Transactional(readOnly = true)
     public Optional<Venue> getVenueByReferenceId(String id) {
         return Optional.of(id)
                 .map(repository::findByReferenceId)
