@@ -11,7 +11,6 @@ import ru.mts.media.platform.umc.domain.gql.types.Event;
 import ru.mts.media.platform.umc.domain.gql.types.Venue;
 
 import java.util.List;
-import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -20,11 +19,6 @@ public class EventPgDao implements EventSot {
     private final EventPgRepository repository;
     private final EventPgMapper mapper;
     private final VenuePgMapper venueMapper;
-
-    @Override
-    public Optional<Event> getEventById(String id) {
-        return repository.findById(id).map(mapper::asModel);
-    }
 
     @Override
     @Transactional(readOnly = true)

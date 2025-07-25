@@ -24,8 +24,8 @@ public class LocalDateTimeCoercing implements Coercing<LocalDateTime, String> {
             @NotNull GraphQLContext graphQLContext,
             @NotNull Locale locale
     ) throws CoercingSerializeException {
-        if (dataFetcherResult instanceof LocalDateTime) {
-            return ((LocalDateTime) dataFetcherResult).format(FORMATTER);
+        if (dataFetcherResult instanceof LocalDateTime localDateTime) {
+            return localDateTime.format(FORMATTER);
         }
         throw new CoercingSerializeException("Expected LocalDateTime, got: " + dataFetcherResult.getClass());
     }
@@ -36,9 +36,9 @@ public class LocalDateTimeCoercing implements Coercing<LocalDateTime, String> {
             @NotNull GraphQLContext graphQLContext,
             @NotNull Locale locale
     ) throws CoercingParseValueException {
-        if (input instanceof String) {
+        if (input instanceof String string) {
             try {
-                return LocalDateTime.parse((String) input, FORMATTER);
+                return LocalDateTime.parse(string, FORMATTER);
             } catch (Exception e) {
                 throw new CoercingParseValueException("Invalid LocalDateTime format: " + input);
             }
@@ -53,8 +53,8 @@ public class LocalDateTimeCoercing implements Coercing<LocalDateTime, String> {
             @NotNull GraphQLContext graphQLContext,
             @NotNull Locale locale
     ) throws CoercingParseLiteralException {
-        if (input instanceof StringValue) {
-            String rawValue = ((StringValue) input).getValue();
+        if (input instanceof StringValue stringValue) {
+            String rawValue = stringValue.getValue();
             try {
                 return LocalDateTime.parse(rawValue, FORMATTER);
             } catch (Exception e) {
