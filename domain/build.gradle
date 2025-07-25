@@ -8,4 +8,8 @@ generateJava {
     schemaPaths = ["${projectDir}/src/main/resources/graphql"]
     packageName = 'ru.mts.media.platform.umc.domain.gql'
     generateClient = false
+
+    typeMapping = [
+            "DateTime": "java.time.LocalDateTime"
+    ]
 }
